@@ -1,0 +1,1 @@
+<launch4jConfig>    <jar>brink-1.0-SNAPSHOT.jar</jar>    <outfile>BrinkApp.exe</outfile>    <mainClass>your.package.MainApp</mainClass>    <jre>        <path>path\to\jre</path> <!-- Optional, if you bundle a JRE -->    </jre>    <cmdLine>--module-path "javafx-sdk-24/lib" --add-modules javafx.controls,javafx.fxml</cmdLine></launch4jConfig>
