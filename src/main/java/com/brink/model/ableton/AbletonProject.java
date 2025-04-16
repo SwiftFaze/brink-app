@@ -1,7 +1,5 @@
-package com.brink.model.dto;
+package com.brink.model.ableton;
 
-
-import com.brink.model.dto.AbletonProjectData.AbletonLiveSet;
 
 import javax.xml.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.brink.model.dto.AbletonProjectData;
+package com.brink.model.ableton;
 
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AbletonGroupTrack {
+public class AbletonMidiTrack  {
 
     @XmlAttribute(name = "Id")
     private int id;

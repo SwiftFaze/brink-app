@@ -1,13 +1,10 @@
-package com.brink.model.dto.AbletonProjectData;
+package com.brink.model.ableton;
 
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AbletonMidiTrack  {
+public class AbletonPreHearTrack {
 
     @XmlAttribute(name = "Id")
     private int id;

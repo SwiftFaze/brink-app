@@ -1,19 +1,19 @@
-package com.brink.model.dto.AbletonProjectData;
+package com.brink.model.ableton;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AbletonIntValue {
+public class AbletonStringValue {
     @XmlAttribute(name = "Value")
-    private int value;
+    private String value;
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(int id) {
+    public void setValue(String id) {
         this.value = value;
     }
 

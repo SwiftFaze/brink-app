@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5dfc6b61-bfe8-44d9-bcf5-fffe95590dd9" name="Changes" comment="init">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/AppSettings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/Brink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/Brink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonProject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonAudioTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonAudioTrack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonGroupTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonGroupTrack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonIntValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonIntValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonLiveSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonLiveSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonMasterTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonMasterTrack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonMidiTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonMidiTrack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonPreHearTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonPreHearTrack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonStringValue.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonStringValue.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonTrackName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonTrackName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/dto/AbletonProjectData/AbletonTracks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ableton/AbletonTracks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/ui/AbletonLiveSetVBoxView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ui/AbletonLiveSetVBoxView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/ui/AbletonProjectVBoxView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ui/AbletonProjectVBoxView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/model/ui/AbletonTrackTableView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/model/ui/AbletonTrackTableView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/brink/shared/AbletonProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/brink/shared/AbletonProjectService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SwiftFaze&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/SwiftFaze/brink-app.git&quot;,
+    &quot;accountId&quot;: &quot;47e4a487-55c8-457c-9c68-d9ad3e2d6e31&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2vl8jwq7HGr3WrLOysmW9hf1PZT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+    <option name="showVisibilityIcons" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Brink (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Brink.executor&quot;: &quot;Run&quot;,
+    &quot;Application.GUIStarter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainApp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Unnamed.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Kamerasteuerung [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.brink [clean,javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.brink [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.brink [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.brink [mvn,clean,javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.brink [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Rob/IdeaProjects/brink-app/src/main/java/com/brink/model&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\brink-app\src\main\java\com\brink\model" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rob\IdeaProjects\brink-app\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Brink">
+    <configuration name="Brink (1)" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.brink.Brink" />
+      <module name="brink" />
+      <option name="VM_PARAMETERS" value="java --module-path &quot;C:\Program Files\Java\javafx-sdk-24\lib&quot; --add-modules javafx.controls,javafx.fxml -jar target/brink-1.0-SNAPSHOT-shaded.jar " />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.brink.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Brink" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.brink.Brink" />
+      <module name="brink" />
+      <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\Java\javafx-sdk-24\lib&quot; --add-modules javafx.controls,javafx.fxml --enable-native-access=ALL-UNNAMED --enable-native-access=javafx.graphics" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.brink.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="brink [clean,javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="exestub.sh" type="ShConfigurationType" temporary="true">
+      <option name="SCRIPT_TEXT" value="" />
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/exestub.sh" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/sh" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="EXECUTE_IN_TERMINAL" value="true" />
+      <option name="EXECUTE_SCRIPT_FILE" value="true" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Brink" />
+      <item itemvalue="Application.Brink (1)" />
+      <item itemvalue="Maven.brink [clean,javafx:run]" />
+      <item itemvalue="Shell Script.exestub.sh" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Shell Script.exestub.sh" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5dfc6b61-bfe8-44d9-bcf5-fffe95590dd9" name="Changes" comment="" />
+      <created>1744708439120</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744708439120</updated>
+      <workItem from="1744708440410" duration="2196000" />
+      <workItem from="1744710651064" duration="9751000" />
+      <workItem from="1744721337610" duration="8535000" />
+      <workItem from="1744735497423" duration="80000" />
+      <workItem from="1744735594814" duration="5000" />
+      <workItem from="1744735765213" duration="30000" />
+      <workItem from="1744808270198" duration="9125000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1744729824422</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1744729824422</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/brink/Brink.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

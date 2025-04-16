@@ -1,4 +1,4 @@
-package com.brink.model.dto.AbletonProjectData;
+package com.brink.model.ableton;
 
 
 import javax.xml.bind.annotation.XmlAccessType;
