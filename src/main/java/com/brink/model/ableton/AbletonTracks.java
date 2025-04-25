@@ -1,48 +1,24 @@
 package com.brink.model.ableton;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 import java.util.List;
 
 @XmlRootElement(name = "Tracks")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonTracks {
-    @XmlElement(name = "AudioTrack")
-    private List<AbletonAudioTrack> audioTracks;
-
-    @XmlElement(name = "MidiTrack")
-    private List<AbletonMidiTrack> midiTracks;
-
-    @XmlElement(name = "GroupTrack")
-    private List<AbletonGroupTrack> groupTracks;
+    @XmlElements({
+            @XmlElement(name = "AudioTrack", type = AbletonTrack.class),
+            @XmlElement(name = "MidiTrack", type = AbletonTrack.class),
+            @XmlElement(name = "GroupTrack", type = AbletonTrack.class)
+    })
+    private List<AbletonTrack> tracks;
 
 
-    public List<AbletonAudioTrack> getAudioTracks() {
-        return audioTracks;
+    public List<AbletonTrack> getTracks() {
+        return tracks;
     }
 
-    public void setAudioTracks(List<AbletonAudioTrack> audioTracks) {
-        this.audioTracks = audioTracks;
+    public void setTracks(List<AbletonTrack> tracks) {
+        this.tracks = tracks;
     }
-
-    public List<AbletonMidiTrack> getMidiTracks() {
-        return midiTracks;
-    }
-
-    public void setMidiTracks(List<AbletonMidiTrack> midiTracks) {
-        this.midiTracks = midiTracks;
-    }
-
-    public List<AbletonGroupTrack> getGroupTracks() {
-        return groupTracks;
-    }
-
-    public void setGroupTracks(List<AbletonGroupTrack> groupTracks) {
-        this.groupTracks = groupTracks;
-    }
-
-
-
 }
