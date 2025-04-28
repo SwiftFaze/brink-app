@@ -1,11 +1,15 @@
 package com.brink.model.ableton;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.bind.annotation.*;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonDeviceChainParent {
+    private static final Logger logger = LoggerFactory.getLogger(AbletonDeviceChainParent.class);
 
 
     @XmlElement(name = "DeviceChain")

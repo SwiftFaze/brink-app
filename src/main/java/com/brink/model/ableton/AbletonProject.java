@@ -1,11 +1,17 @@
 package com.brink.model.ableton;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "Ableton")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonProject{
+    private static final Logger logger = LoggerFactory.getLogger(AbletonProject.class);
+
+
     @XmlAttribute(name = "MajorVersion")
     private int majorVersion;
     @XmlAttribute(name = "MinorVersion")

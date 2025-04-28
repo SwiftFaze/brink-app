@@ -1,12 +1,16 @@
 package com.brink.model.ableton;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonTrackName {
+    private static final Logger logger = LoggerFactory.getLogger(AbletonTrackName.class);
 
     @XmlElement(name = "EffectiveName")
     private AbletonStringValue effectiveName;

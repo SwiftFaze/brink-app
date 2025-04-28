@@ -2,6 +2,8 @@ package com.brink.model.ableton;
 
 
 import com.brink.shared.AbletonAudioClipService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -13,6 +15,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonEvents {
+    private static final Logger logger = LoggerFactory.getLogger(AbletonEvents.class);
 
     @XmlAnyElement
     private List<Element> audioClipElements;

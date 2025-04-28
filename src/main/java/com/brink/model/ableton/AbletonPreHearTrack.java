@@ -1,10 +1,14 @@
 package com.brink.model.ableton;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.bind.annotation.*;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonPreHearTrack {
+    private static final Logger logger = LoggerFactory.getLogger(AbletonPreHearTrack.class);
 
     @XmlAttribute(name = "Id")
     private int id;

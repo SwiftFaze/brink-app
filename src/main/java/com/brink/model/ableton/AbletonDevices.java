@@ -1,5 +1,7 @@
 package com.brink.model.ableton;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonDevices {
+    private static final Logger logger = LoggerFactory.getLogger(AbletonDevices.class);
 
     @XmlAnyElement
     private List<Element> deviceElements;  // DOM elements of unknown tag names
