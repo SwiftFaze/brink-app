@@ -1,1 +1,16 @@
-<configuration>    <!-- Console appender to output logs in colored format -->    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">        <encoder>            <!-- Add color and timestamp to logs -->            <pattern>%d{YYYY-MM-DD HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>        </encoder>    </appender>    <!-- Root logger configuration -->    <root level="info">        <appender-ref ref="console"/>    </root></configuration>
+<configuration>
+
+    <!-- Console appender to output logs in colored format -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- Add color and timestamp to logs -->
+            <pattern>%d{YYYY-MM-DD HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Root logger configuration -->
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
