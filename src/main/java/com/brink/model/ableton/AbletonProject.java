@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.*;
 
 @XmlRootElement(name = "Ableton")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AbletonProject{
+public class AbletonProject {
     private static final Logger logger = LoggerFactory.getLogger(AbletonProject.class);
 
 

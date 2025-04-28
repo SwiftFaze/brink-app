@@ -1,1 +1,3 @@
-/target/brink.properties/target/*
+/target/
+brink.properties
+/target/*

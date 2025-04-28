@@ -1,1 +1,109 @@
-package com.brink.model;import com.brink.shared.FileService;import com.fasterxml.jackson.databind.ObjectMapper;import org.slf4j.LoggerFactory;import org.slf4j.Logger;import java.io.File;import java.io.IOException;import java.nio.file.Files;import java.nio.file.Path;import java.nio.file.Paths;import java.util.ArrayList;import java.util.List;import java.util.stream.Stream;public class UserPluginData {    private static final Logger logger = LoggerFactory.getLogger(UserPluginData.class);    private String username;    private List<Plugin> pluginList = new ArrayList<>();    public UserPluginData() {    }    public UserPluginData(AppSettings appSettings) {        this.username = appSettings.getGitUsername();        this.createUserPluginListFile(appSettings);    }    private void createUserPluginListFile(AppSettings appSettings) {        logger.debug("Creating user plugin data...");        File pluginFolder = new File(appSettings.getPluginFolderPath());        if (!pluginFolder.exists() || !pluginFolder.isDirectory()) {            logger.error("Plugin folder does not exist or is not a directory.");            return;        }        try (Stream<Path> paths = Files.walk(Paths.get(appSettings.getPluginFolderPath()))) {            paths.filter(Files::isRegularFile)                    .filter(path -> {                        String fileName = path.getFileName().toString().toLowerCase();                        return fileName.endsWith(".dll") || fileName.endsWith(".vst3");                    })                    .forEach(path -> {                        Plugin plugin = new Plugin(path.getFileName().toString());                        pluginList.add(plugin);                    });            logger.debug("Created user plugin data");        } catch (IOException e) {            logger.error("Error scanning plugin folder: {}", e.getMessage());        }    }    public void save(AppSettings appSettings, ProjectSummary projectSummary) {        logger.debug("Saving user plugin data file...");        String filePath = FileService.createUserPluginFilePath(appSettings, projectSummary);        ObjectMapper objectMapper = new ObjectMapper();        File file = new File(filePath);        File parentDir = file.getParentFile();        if (parentDir != null && !parentDir.exists()) {            parentDir.mkdirs();        }        try {            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);            logger.info("Saved to: {}", filePath);        } catch (IOException e) {            logger.error("Error saving user plugin data to JSON file: {}", e.getMessage());        }    }    public void load(String filePath) {        ObjectMapper objectMapper = new ObjectMapper();        try {            UserPluginData userPluginData = objectMapper.readValue(new File(filePath), UserPluginData.class);            this.username = userPluginData.username;            this.pluginList = userPluginData.pluginList;        } catch (IOException e) {            logger.error("Error loading user plugin data to JSON file: {}", e.getMessage());        }    }    public String getUsername() {        return username;    }    public void setUsername(String username) {        this.username = username;    }    public List<Plugin> getPluginList() {        return pluginList;    }    public void setPluginList(List<Plugin> pluginList) {        this.pluginList = pluginList;    }}
+package com.brink.model;
+
+import com.brink.shared.FileService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
+public class UserPluginData {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserPluginData.class);
+
+    private String username;
+
+    private List<Plugin> pluginList = new ArrayList<>();
+
+    public UserPluginData() {
+    }
+
+    public UserPluginData(AppSettings appSettings) {
+        this.username = appSettings.getGitUsername();
+        this.createUserPluginListFile(appSettings);
+    }
+
+    private void createUserPluginListFile(AppSettings appSettings) {
+        logger.debug("Creating user plugin data...");
+
+        File pluginFolder = new File(appSettings.getPluginFolderPath());
+        if (!pluginFolder.exists() || !pluginFolder.isDirectory()) {
+            logger.error("Plugin folder does not exist or is not a directory.");
+            return;
+        }
+
+        try (Stream<Path> paths = Files.walk(Paths.get(appSettings.getPluginFolderPath()))) {
+            paths.filter(Files::isRegularFile)
+                    .filter(path -> {
+                        String fileName = path.getFileName().toString().toLowerCase();
+                        return fileName.endsWith(".dll") || fileName.endsWith(".vst3");
+                    })
+                    .forEach(path -> {
+                        Plugin plugin = new Plugin(path.getFileName().toString());
+                        pluginList.add(plugin);
+                    });
+            logger.debug("Created user plugin data");
+
+        } catch (IOException e) {
+            logger.error("Error scanning plugin folder: {}", e.getMessage());
+        }
+    }
+
+
+    public void save(AppSettings appSettings, ProjectSummary projectSummary) {
+        logger.debug("Saving user plugin data file...");
+
+        String filePath = FileService.createUserPluginFilePath(appSettings, projectSummary);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        File file = new File(filePath);
+
+        File parentDir = file.getParentFile();
+        if (parentDir != null && !parentDir.exists()) {
+            parentDir.mkdirs();
+        }
+
+        try {
+            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
+            logger.info("Saved to: {}", filePath);
+        } catch (IOException e) {
+            logger.error("Error saving user plugin data to JSON file: {}", e.getMessage());
+        }
+    }
+
+    public void load(String filePath) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            UserPluginData userPluginData = objectMapper.readValue(new File(filePath), UserPluginData.class);
+            this.username = userPluginData.username;
+            this.pluginList = userPluginData.pluginList;
+        } catch (IOException e) {
+            logger.error("Error loading user plugin data to JSON file: {}", e.getMessage());
+        }
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Plugin> getPluginList() {
+        return pluginList;
+    }
+
+    public void setPluginList(List<Plugin> pluginList) {
+        this.pluginList = pluginList;
+    }
+}
+
+

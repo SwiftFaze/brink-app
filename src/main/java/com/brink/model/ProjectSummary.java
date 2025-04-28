@@ -1,1 +1,65 @@
-package com.brink.model;import org.slf4j.Logger;import org.slf4j.LoggerFactory;import java.time.LocalDateTime;public class ProjectSummary {    private static final Logger logger = LoggerFactory.getLogger(ProjectSummary.class);    private String projectName;    private String folderPath;    private LocalDateTime createdDate;    private boolean isGitVersioned;    private boolean isCollected;    private boolean isCompatible;    public String getProjectName() {        return projectName;    }    public void setProjectName(String projectName) {        this.projectName = projectName;    }    public LocalDateTime getCreatedDate() {        return createdDate;    }    public void setCreatedDate(LocalDateTime createdDate) {        this.createdDate = createdDate;    }    public boolean isGitVersioned() {        return isGitVersioned;    }    public void setGitVersioned(boolean gitVersioned) {        isGitVersioned = gitVersioned;    }    public boolean isCollected() {        return isCollected;    }    public void setCollected(boolean collected) {        isCollected = collected;    }    public boolean isCompatible() {        return isCompatible;    }    public void setCompatible(boolean compatible) {        isCompatible = compatible;    }    public String getFolderPath() {        return folderPath;    }    public void setFolderPath(String folderPath) {        this.folderPath = folderPath;    }}
+package com.brink.model;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.time.LocalDateTime;
+
+public class ProjectSummary {
+    private static final Logger logger = LoggerFactory.getLogger(ProjectSummary.class);
+
+    private String projectName;
+    private String folderPath;
+    private LocalDateTime createdDate;
+    private boolean isGitVersioned;
+    private boolean isCollected;
+    private boolean isCompatible;
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public boolean isGitVersioned() {
+        return isGitVersioned;
+    }
+
+    public void setGitVersioned(boolean gitVersioned) {
+        isGitVersioned = gitVersioned;
+    }
+
+    public boolean isCollected() {
+        return isCollected;
+    }
+
+    public void setCollected(boolean collected) {
+        isCollected = collected;
+    }
+
+    public boolean isCompatible() {
+        return isCompatible;
+    }
+
+    public void setCompatible(boolean compatible) {
+        isCompatible = compatible;
+    }
+
+    public String getFolderPath() {
+        return folderPath;
+    }
+
+    public void setFolderPath(String folderPath) {
+        this.folderPath = folderPath;
+    }
+}

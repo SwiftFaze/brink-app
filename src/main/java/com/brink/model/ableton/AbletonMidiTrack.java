@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AbletonMidiTrack  {
+public class AbletonMidiTrack {
     private static final Logger logger = LoggerFactory.getLogger(AbletonMidiTrack.class);
 
     @XmlAttribute(name = "Id")
