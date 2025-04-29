@@ -1,11 +1,13 @@
 package com.brink;
 
-import com.brink.model.AppSettings;
-import com.brink.model.ProjectSummary;
-import com.brink.model.UserPluginData;
+import com.brink.model.app.AppSettings;
+import com.brink.model.FileData;
+import com.brink.model.Collaborator;
 import com.brink.model.ableton.AbletonProject;
+import com.brink.model.app.Project;
 import com.brink.model.ui.AbletonProjectVBoxView;
-import com.brink.shared.AbletonProjectService;
+import com.brink.shared.FileService;
+import com.brink.shared.ProjectService;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -26,7 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
@@ -37,7 +38,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
 
 public class Brink extends Application {
     private static final Logger logger = LoggerFactory.getLogger(Brink.class);
@@ -48,7 +48,7 @@ public class Brink extends Application {
 
     private final List<File> alsFiles = new ArrayList<>();
     private final TableView<File> projectFileList = new TableView<>();
-    private final ProjectSummary selectedProjectSummary = new ProjectSummary();
+    private final FileData selectedFileData = new FileData();
     private final VBox projectInfoView = new VBox();
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private final ProgressIndicator projectInfoLoadingSpinner = new ProgressIndicator();
@@ -57,17 +57,9 @@ public class Brink extends Application {
     private final MenuBar appHeaderMenu = new MenuBar();
     private final VBox mainLayout = new VBox();
     private AppSettings appSettings = new AppSettings();
-    private final UserPluginData userPluginData = new UserPluginData();
+    private final Collaborator collaborator = new Collaborator();
 
-    private static LocalDateTime getFileLocalDateTime(File file) {
-        try {
-            Path path = file.toPath();
-            BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-            return LocalDateTime.ofInstant(attrs.creationTime().toInstant(), ZoneId.systemDefault());
-        } catch (IOException e) {
-            return null;
-        }
-    }
+
 
     public static void main(String[] args) {
         launch(args);
@@ -97,7 +89,7 @@ public class Brink extends Application {
 
         updateProjectList();
 
-        onProjectSelection();
+        onProjectFileSelection();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             logger.info("======= [BRINK APPLICATION EXITED] =======");
         }));
@@ -106,15 +98,15 @@ public class Brink extends Application {
     private void addUserPluginDataToProject() {
         this.setProjectInfoLoading(true);
 
-        Task<UserPluginData> task = new Task<>() {
+        Task<Collaborator> task = new Task<>() {
             @Override
-            protected UserPluginData call() {
-                return new UserPluginData(appSettings);
+            protected Collaborator call() {
+                return new Collaborator(appSettings);
             }
 
             @Override
             protected void succeeded() {
-                userPluginData.save(appSettings, selectedProjectSummary);
+                collaborator.save(appSettings, selectedFileData);
                 setProjectInfoLoading(false);
             }
 
@@ -136,29 +128,30 @@ public class Brink extends Application {
         this.mainLayout.getChildren().addAll(this.appHeaderMenu, splitPane, this.bottomProjectBar);
     }
 
-    private void onProjectSelection() {
-        // Selection listener
+    private void onProjectFileSelection() {
+        // PROJECT FILE SELECTION LISTENER
         projectFileList.getSelectionModel().selectedItemProperty().addListener((obs, previousProjectFile, selectedProjectFile) -> {
             if (selectedProjectFile != null) {
                 setProjectInfoViewContents(null);
 
                 setProjectInfoLoading(true);
-                Task<AbletonProject> loadTask = new Task<>() {
+                Task<Project> loadTask = new Task<>() {
+                    // ON SELECTION MAPS ABLETON PROJECT
                     @Override
-                    protected AbletonProject call() throws Exception {
+                    protected Project call() throws Exception {
                         Platform.runLater(() -> {
-                            selectedProjectSummary.setProjectName(selectedProjectFile.getName());
-                            selectedProjectSummary.setCreatedDate(getFileLocalDateTime(selectedProjectFile));
-                            selectedProjectSummary.setFolderPath(selectedProjectFile.getParent());
+                            selectedFileData.setProjectName(selectedProjectFile.getName());
+                            selectedFileData.setCreatedDate(FileService.getFileLocalDateTime(selectedProjectFile));
+                            selectedFileData.setFolderPath(selectedProjectFile.getParent());
                         });
-
-                        String xml = decompressGzipFileToString(selectedProjectFile);
-                        return AbletonProjectService.convert2AbletonProject(xml);
+                        // RETURNS TO succeeded()
+                        AbletonProject abletonProject = new AbletonProject(selectedProjectFile);
+                        return ProjectService.convert2Project(abletonProject);
                     }
-
+                    // ON SUCCESS LOADS VIEW
                     @Override
                     protected void succeeded() {
-                        AbletonProject project = getValue();
+                        Project project = getValue();
                         Platform.runLater(() -> {
                             setProjectInfoViewContents(project);
 
@@ -181,7 +174,7 @@ public class Brink extends Application {
         });
     }
 
-    private void setProjectInfoViewContents(AbletonProject project) {
+    private void setProjectInfoViewContents(Project project) {
         if (project != null) {
             AbletonProjectVBoxView projectView = new AbletonProjectVBoxView(project);
             projectInfoView.getChildren().setAll(projectView);
@@ -234,7 +227,7 @@ public class Brink extends Application {
 
         // DATE COL
         dateCol.setCellValueFactory(data -> {
-            LocalDateTime created = getFileLocalDateTime(data.getValue());
+            LocalDateTime created = FileService.getFileLocalDateTime(data.getValue());
             String formatted = (created != null) ? created.format(formatter) : "N/A";
             return new SimpleStringProperty(formatted);
         });
@@ -265,19 +258,7 @@ public class Brink extends Application {
         }
     }
 
-    private String decompressGzipFileToString(File file) throws IOException {
-        try (GZIPInputStream gzipInputStream = new GZIPInputStream(new FileInputStream(file));
-             InputStreamReader inputStreamReader = new InputStreamReader(gzipInputStream, StandardCharsets.UTF_8);
-             BufferedReader bufferedReader = new BufferedReader(inputStreamReader)) {
 
-            StringBuilder output = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                output.append(line).append("\n");
-            }
-            return output.toString();
-        }
-    }
 
     private void findAlsFiles(File folder, List<File> alsFiles) {
         if (folder.getName().equalsIgnoreCase("Backup")) return;

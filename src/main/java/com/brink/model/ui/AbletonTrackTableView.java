@@ -2,6 +2,7 @@ package com.brink.model.ui;
 
 import com.brink.model.ableton.AbletonTrack;
 import com.brink.model.ableton.AbletonTracks;
+import com.brink.model.app.Track;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -11,50 +12,39 @@ import javafx.scene.layout.VBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public class AbletonTrackTableView extends VBox {
     private static final Logger logger = LoggerFactory.getLogger(AbletonTrackTableView.class);
 
-    public AbletonTrackTableView(AbletonTracks tracks) {
+    public AbletonTrackTableView(List<Track> trackList) {
         setSpacing(12);
         setStyle("-fx-padding: 10;");
 
-        TableView<AbletonTrack> audioTable = createAudioTrackTable();
+        TableView<Track> trackTable = createAudioTrackTable();
 
-        // If there are audio tracks, add them to the table
-        if (tracks != null) {
-            if (tracks.getTracks() != null) {
-                audioTable.getItems().addAll(tracks.getTracks());
-            }
-        }
+        trackTable.getItems().addAll(trackList);
 
-        getChildren().add(audioTable);
+        getChildren().add(trackTable);
     }
 
-    private static TableView<AbletonTrack> createAudioTrackTable() {
+    private static TableView<Track> createAudioTrackTable() {
         // Create the TableView for AbletonAudioTrack
-        TableView<AbletonTrack> table = new TableView<>();
+        TableView<Track> table = new TableView<>();
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        // ID Column
-        TableColumn<AbletonTrack, Integer> idCol = new TableColumn<>("ID");
-        idCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()).asObject());
-
-        // LomId Column
-        TableColumn<AbletonTrack, Integer> lomIdCol = new TableColumn<>("Lom ID");
-        lomIdCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getLomId()).asObject());
 
 
         // Name Column
-        TableColumn<AbletonTrack, String> nameCol = new TableColumn<>("Name");
-        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTrackName().getEffectiveName()));
+        TableColumn<Track, String> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
 
         // IsFrozen Column
-        TableColumn<AbletonTrack, Boolean> isFrozen = new TableColumn<>("Frozen");
+        TableColumn<Track, Boolean> isFrozen = new TableColumn<>("Frozen");
         isFrozen.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().isFrozen()));
 
 
         // Add the columns to the table
-        table.getColumns().addAll(idCol, lomIdCol, nameCol, isFrozen);
+        table.getColumns().addAll(nameCol, isFrozen);
         return table;
     }
 

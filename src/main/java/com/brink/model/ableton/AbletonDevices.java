@@ -1,5 +1,6 @@
 package com.brink.model.ableton;
 
+import com.brink.model.PluginFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
@@ -31,18 +32,21 @@ public class AbletonDevices {
                 AbletonDevice device = new AbletonDevice();
                 device.setName(extractPluginName(element));
                 device.setNative(false);
+                device.setFormat(PluginFormat.extractPluginFormat(extractPluginPath(element)));
                 devices.add(device);
 
             } else if ("AudioEffectGroupDevice".equals(tagName) || "InstrumentGroupDevice".equals(tagName)) {
                 AbletonDevice device = new AbletonDevice();
                 device.setName("Plugin group");
                 device.setNative(false);
+                device.setFormat(PluginFormat.extractPluginFormat(extractPluginPath(element)));
                 devices.add(device);
 
             } else {
                 AbletonDevice device = new AbletonDevice();
                 device.setName(tagName);
                 device.setNative(true);
+                device.setFormat(PluginFormat.extractPluginFormat(extractPluginPath(element)));
                 devices.add(device);
 
             }
@@ -57,10 +61,20 @@ public class AbletonDevices {
         NodeList plugNameNodes = pluginElement.getElementsByTagName("PlugName");
         if (plugNameNodes != null && plugNameNodes.getLength() > 0) {
             Element plugNameElement = (Element) plugNameNodes.item(0);
-            return plugNameElement.getAttribute("Value"); // "Portal"
+            return plugNameElement.getAttribute("Value");
         }
         return null;
     }
+    private String extractPluginPath(Element pluginElement) {
+        NodeList plugPathNodes = pluginElement.getElementsByTagName("Path");
+        if (plugPathNodes != null && plugPathNodes.getLength() > 0) {
+            Element plugNameElement = (Element) plugPathNodes.item(0);
+            return plugNameElement.getAttribute("Value");
+        }
+        return null;
+    }
+
+
 
     public List<Element> getDeviceElements() {
         return deviceElements;

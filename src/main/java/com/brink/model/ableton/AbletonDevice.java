@@ -1,6 +1,7 @@
 package com.brink.model.ableton;
 
 
+import com.brink.model.PluginFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,8 @@ public class AbletonDevice {
     private String name;
     @XmlTransient
     private boolean isNative;
+    @XmlTransient
+    private PluginFormat format;
 
     public String getName() {
         return name;
@@ -31,5 +34,13 @@ public class AbletonDevice {
 
     public void setNative(boolean aNative) {
         isNative = aNative;
+    }
+
+    public PluginFormat getFormat() {
+        return format;
+    }
+
+    public void setFormat(PluginFormat format) {
+        this.format = format;
     }
 }

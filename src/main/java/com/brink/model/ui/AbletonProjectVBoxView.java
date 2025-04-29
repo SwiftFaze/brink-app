@@ -1,6 +1,8 @@
 package com.brink.model.ui;
 
 import com.brink.model.ableton.AbletonProject;
+import com.brink.model.app.Project;
+import com.brink.shared.JavaFxService;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -10,42 +12,32 @@ import org.slf4j.LoggerFactory;
 public class AbletonProjectVBoxView extends VBox {
     private static final Logger logger = LoggerFactory.getLogger(AbletonProjectVBoxView.class);
 
-    public AbletonProjectVBoxView(AbletonProject project) {
+    public AbletonProjectVBoxView(Project project) {
         setSpacing(12);
         setStyle("-fx-padding: 15;");
 
         Label titleLabel = new Label("Ableton Project Info");
         titleLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 16;");
 
-        TextField creatorField = readOnlyField("Creator: " + safe(project.getCreator()));
-        TextField majorVersionField = readOnlyField("Major Version: " + project.getMajorVersion());
-        TextField minorVersionField = readOnlyField("Minor Version: " + safe(project.getMinorVersion()));
-        TextField revisionField = readOnlyField("Revision: " + safe(project.getRevision()));
-        TextField schemaChangeField = readOnlyField("Schema Changes: " + project.getSchemaChangeCount());
+        TextField projectNameField = JavaFxService.createReadOnlyField("Project name: " + project.getName());
+        TextField compatibleField = JavaFxService.createReadOnlyField("Is compatible: " + project.getCompatibility().isCompatible());
+        TextField collectedField = JavaFxService.createReadOnlyField("Is collected: " + project.getCompatibility().isCollected());
+        TextField creatorField = JavaFxService.createReadOnlyField("Version: " + project.getVersion());
+//        TextField userListField = JavaFxService.createReadOnlyField("Version: " + project.getCollaborator());
 
         getChildren().addAll(
                 titleLabel,
-                creatorField,
-                majorVersionField,
-                minorVersionField,
-                revisionField,
-                schemaChangeField
+                projectNameField,
+                compatibleField,
+                collectedField,
+                creatorField
         );
 
-        if (project.getLiveSet() != null) {
-            getChildren().add(new AbletonLiveSetVBoxView(project.getLiveSet()));
-        }
+        getChildren().add(new AbletonTrackTableView(project.getTracksList()));
+        getChildren().add(new AbletonDeviceTableView(project.getDeviceList()));
+        getChildren().add(new AbletonAudioClipTableView(project.getAudioClipList()));
     }
 
-    private TextField readOnlyField(String text) {
-        TextField field = new TextField(text);
-        field.setEditable(false);
-        field.setFocusTraversable(false);
-        field.setStyle("-fx-background-color: transparent; -fx-border-color: transparent;");
-        return field;
-    }
 
-    private String safe(String s) {
-        return s != null ? s : "N/A";
-    }
+
 }

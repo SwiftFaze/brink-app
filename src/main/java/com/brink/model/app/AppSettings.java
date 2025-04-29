@@ -1,4 +1,4 @@
-package com.brink.model;
+package com.brink.model.app;
 
 
 import org.slf4j.Logger;

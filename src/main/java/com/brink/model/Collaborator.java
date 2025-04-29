@@ -1,5 +1,7 @@
 package com.brink.model;
 
+import com.brink.model.app.AppSettings;
+import com.brink.model.app.Plugin;
 import com.brink.shared.FileService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -14,53 +16,60 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class UserPluginData {
+public class Collaborator {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserPluginData.class);
+    private static final Logger logger = LoggerFactory.getLogger(Collaborator.class);
 
     private String username;
 
     private List<Plugin> pluginList = new ArrayList<>();
 
-    public UserPluginData() {
+    public Collaborator() {
     }
 
-    public UserPluginData(AppSettings appSettings) {
+    public Collaborator(AppSettings appSettings) {
         this.username = appSettings.getGitUsername();
-        this.createUserPluginListFile(appSettings);
+        this.pluginList =  this.getUserPlugins(appSettings);
     }
 
-    private void createUserPluginListFile(AppSettings appSettings) {
-        logger.debug("Creating user plugin data...");
+    private List<Plugin> getUserPlugins(AppSettings appSettings) {
+        logger.debug("Collecting user plugin List...");
 
         File pluginFolder = new File(appSettings.getPluginFolderPath());
         if (!pluginFolder.exists() || !pluginFolder.isDirectory()) {
             logger.error("Plugin folder does not exist or is not a directory.");
-            return;
+            new ArrayList<>();
         }
 
+        List<Plugin> userPluginList = new ArrayList<>();
+
+        // ITERATES ALL FOLDERS OF USER PLUGIN FOLDER
         try (Stream<Path> paths = Files.walk(Paths.get(appSettings.getPluginFolderPath()))) {
             paths.filter(Files::isRegularFile)
-                    .filter(path -> {
-                        String fileName = path.getFileName().toString().toLowerCase();
-                        return fileName.endsWith(".dll") || fileName.endsWith(".vst3");
-                    })
+                    .filter(path -> PluginFormat.isSupportedPluginFormat(path.getFileName().toString()))
                     .forEach(path -> {
+                        // IF SUPPORTED PLUGIN EXTENSION, CREATES PLUGIN
                         Plugin plugin = new Plugin(path.getFileName().toString());
-                        pluginList.add(plugin);
+                        userPluginList.add(plugin);
                     });
-            logger.debug("Created user plugin data");
 
+            logger.debug("Collected user plugin list");
+            return userPluginList;
         } catch (IOException e) {
-            logger.error("Error scanning plugin folder: {}", e.getMessage());
+            logger.error("Error scanning plugin folder: {}", e.getMessage(), e);
         }
+
+
+        return new ArrayList<>();
     }
 
 
-    public void save(AppSettings appSettings, ProjectSummary projectSummary) {
-        logger.debug("Saving user plugin data file...");
 
-        String filePath = FileService.createUserPluginFilePath(appSettings, projectSummary);
+
+    public void save(AppSettings appSettings, FileData fileData) {
+        logger.debug("Saving collaborator file...");
+
+        String filePath = FileService.createUserPluginFilePath(appSettings, fileData);
 
         ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(filePath);
@@ -74,18 +83,7 @@ public class UserPluginData {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
             logger.info("Saved to: {}", filePath);
         } catch (IOException e) {
-            logger.error("Error saving user plugin data to JSON file: {}", e.getMessage());
-        }
-    }
-
-    public void load(String filePath) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            UserPluginData userPluginData = objectMapper.readValue(new File(filePath), UserPluginData.class);
-            this.username = userPluginData.username;
-            this.pluginList = userPluginData.pluginList;
-        } catch (IOException e) {
-            logger.error("Error loading user plugin data to JSON file: {}", e.getMessage());
+            logger.error("Error saving collaborator data to JSON file: {}", e.getMessage());
         }
     }
 

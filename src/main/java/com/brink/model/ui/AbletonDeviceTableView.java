@@ -1,6 +1,7 @@
 package com.brink.model.ui;
 
 import com.brink.model.ableton.AbletonDevice;
+import com.brink.model.app.Device;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
@@ -14,28 +15,31 @@ import java.util.List;
 public class AbletonDeviceTableView extends VBox {
     private static final Logger logger = LoggerFactory.getLogger(AbletonDeviceTableView.class);
 
-    public AbletonDeviceTableView(List<AbletonDevice> abletonDeviceList) {
+    public AbletonDeviceTableView(List<Device> deviceList) {
         setSpacing(12);
         setStyle("-fx-padding: 10;");
 
-        TableView<AbletonDevice> deviceTable = createDeviceTable();
+        TableView<Device> deviceTable = createDeviceTable();
 
-        deviceTable.getItems().addAll(abletonDeviceList);
+        deviceTable.getItems().addAll(deviceList);
 
         getChildren().add(deviceTable);
     }
 
-    private static TableView<AbletonDevice> createDeviceTable() {
-        TableView<AbletonDevice> table = new TableView<>();
+    private static TableView<Device> createDeviceTable() {
+        TableView<Device> table = new TableView<>();
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-        TableColumn<AbletonDevice, String> nameCol = new TableColumn<>("Name");
-        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        TableColumn<Device, String> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPlugin().getName()));
 
-        TableColumn<AbletonDevice, Boolean> isNativeCol = new TableColumn<>("Native");
+        TableColumn<Device, String> formatCol = new TableColumn<>("Format");
+        formatCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getPlugin().getFormat().getName()));
+
+        TableColumn<Device, Boolean> isNativeCol = new TableColumn<>("Native");
         isNativeCol.setCellValueFactory(cellData -> new SimpleBooleanProperty(cellData.getValue().isNative()));
 
-        table.getColumns().addAll(nameCol, isNativeCol);
+        table.getColumns().addAll(nameCol, formatCol, isNativeCol);
 
         return table;
     }
