@@ -1,6 +1,5 @@
 package com.brink.model.app;
 
-import com.brink.model.ableton.AbletonAudioClip;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

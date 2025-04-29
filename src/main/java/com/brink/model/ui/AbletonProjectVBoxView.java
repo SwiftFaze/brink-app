@@ -1,6 +1,5 @@
 package com.brink.model.ui;
 
-import com.brink.model.ableton.AbletonProject;
 import com.brink.model.app.Project;
 import com.brink.shared.JavaFxService;
 import javafx.scene.control.Label;
@@ -37,7 +36,6 @@ public class AbletonProjectVBoxView extends VBox {
         getChildren().add(new AbletonDeviceTableView(project.getDeviceList()));
         getChildren().add(new AbletonAudioClipTableView(project.getAudioClipList()));
     }
-
 
 
 }

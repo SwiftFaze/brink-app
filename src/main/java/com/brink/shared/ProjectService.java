@@ -39,9 +39,6 @@ public class ProjectService {
     }
 
 
-
-
-
     public static AudioClip convert2AudioClip(AbletonAudioClip abletonAudioClip) {
         AudioClip audioClip = new AudioClip();
         audioClip.setInProject(abletonAudioClip.isInProject());

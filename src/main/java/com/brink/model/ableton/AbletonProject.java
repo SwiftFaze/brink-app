@@ -11,9 +11,8 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.*;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.util.zip.GZIPInputStream;
+import java.io.File;
+import java.io.StringReader;
 
 @XmlRootElement(name = "Ableton")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -56,8 +55,6 @@ public class AbletonProject {
             logger.error("Error reading Ableton project file", e);
         }
     }
-
-
 
 
     public int getSchemaChangeCount() {

@@ -1,9 +1,9 @@
 package com.brink;
 
-import com.brink.model.app.AppSettings;
-import com.brink.model.FileData;
 import com.brink.model.Collaborator;
+import com.brink.model.FileData;
 import com.brink.model.ableton.AbletonProject;
+import com.brink.model.app.AppSettings;
 import com.brink.model.app.Project;
 import com.brink.model.ui.AbletonProjectVBoxView;
 import com.brink.shared.FileService;
@@ -27,13 +27,12 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,10 +55,8 @@ public class Brink extends Application {
     private final VBox bottomProjectBar = new VBox();
     private final MenuBar appHeaderMenu = new MenuBar();
     private final VBox mainLayout = new VBox();
-    private AppSettings appSettings = new AppSettings();
     private final Collaborator collaborator = new Collaborator();
-
-
+    private AppSettings appSettings = new AppSettings();
 
     public static void main(String[] args) {
         launch(args);
@@ -148,6 +145,7 @@ public class Brink extends Application {
                         AbletonProject abletonProject = new AbletonProject(selectedProjectFile);
                         return ProjectService.convert2Project(abletonProject);
                     }
+
                     // ON SUCCESS LOADS VIEW
                     @Override
                     protected void succeeded() {
@@ -257,7 +255,6 @@ public class Brink extends Application {
             projectFileList.getItems().setAll(alsFiles);
         }
     }
-
 
 
     private void findAlsFiles(File folder, List<File> alsFiles) {

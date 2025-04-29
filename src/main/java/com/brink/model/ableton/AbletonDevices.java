@@ -65,6 +65,7 @@ public class AbletonDevices {
         }
         return null;
     }
+
     private String extractPluginPath(Element pluginElement) {
         NodeList plugPathNodes = pluginElement.getElementsByTagName("Path");
         if (plugPathNodes != null && plugPathNodes.getLength() > 0) {
@@ -73,7 +74,6 @@ public class AbletonDevices {
         }
         return null;
     }
-
 
 
     public List<Element> getDeviceElements() {

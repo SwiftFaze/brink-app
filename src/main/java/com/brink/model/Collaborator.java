@@ -29,7 +29,7 @@ public class Collaborator {
 
     public Collaborator(AppSettings appSettings) {
         this.username = appSettings.getGitUsername();
-        this.pluginList =  this.getUserPlugins(appSettings);
+        this.pluginList = this.getUserPlugins(appSettings);
     }
 
     private List<Plugin> getUserPlugins(AppSettings appSettings) {
@@ -62,8 +62,6 @@ public class Collaborator {
 
         return new ArrayList<>();
     }
-
-
 
 
     public void save(AppSettings appSettings, FileData fileData) {

@@ -54,7 +54,6 @@ public class Compatibility {
     }
 
 
-
     public boolean isGitVersioned() {
         return isGitVersioned;
     }

@@ -1,4 +1,5 @@
 package com.brink.model.app;
+
 import com.brink.model.Collaborator;
 import com.brink.model.Compatibility;
 import com.brink.model.FileData;

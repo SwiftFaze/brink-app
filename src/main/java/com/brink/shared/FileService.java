@@ -1,7 +1,7 @@
 package com.brink.shared;
 
-import com.brink.model.app.AppSettings;
 import com.brink.model.FileData;
+import com.brink.model.app.AppSettings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,6 +1,5 @@
 package com.brink.model.ui;
 
-import com.brink.model.ableton.AbletonDevice;
 import com.brink.model.app.Device;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;

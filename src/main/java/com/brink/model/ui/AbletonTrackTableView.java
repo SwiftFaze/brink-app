@@ -1,10 +1,7 @@
 package com.brink.model.ui;
 
-import com.brink.model.ableton.AbletonTrack;
-import com.brink.model.ableton.AbletonTracks;
 import com.brink.model.app.Track;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
