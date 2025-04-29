@@ -4,28 +4,32 @@ package com.brink.model.ableton;
 import com.brink.model.Collaborator;
 import com.brink.model.Compatibility;
 import com.brink.model.FileData;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.*;
 import java.io.File;
-import java.io.StringReader;
 
-@XmlRootElement(name = "Ableton")
-@XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonProject {
     private static final Logger logger = LoggerFactory.getLogger(AbletonProject.class);
 
-    @XmlAttribute(name = "SchemaChangeCount")
+    @Expose
+    @SerializedName("SchemaChangeCount")
     private int schemaChangeCount;
 
-    @XmlAttribute(name = "Creator")
+    @Expose
+    @SerializedName("Creator")
     private String version;
 
-    @XmlElement(name = "LiveSet")
+    @Expose
+    @SerializedName("LiveSet")
     private AbletonLiveSet liveSet;
 
     private FileData fileData;
@@ -35,27 +39,49 @@ public class AbletonProject {
     private Collaborator collaborator;
 
     public AbletonProject() {
+
     }
 
     public AbletonProject(File alsFile) {
         try {
             this.fileData = new FileData(alsFile);
 
+            // Convert the XML string to JSON first (or directly parse if in JSON format)
+            String json = convertXmlToJson(fileData.getXmlAlsFile());
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(AbletonProject.class);
-            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            AbletonProject loadedProject = (AbletonProject) jaxbUnmarshaller.unmarshal(new StringReader(fileData.getXmlAlsFile()));
-
+            // Use Gson to parse the JSON into your AbletonProject object
+            Gson gson = new GsonBuilder()
+                    .excludeFieldsWithoutExposeAnnotation()
+                    .create();
+            AbletonProject loadedProject = gson.fromJson(json, AbletonProject.class);
+System.out.println(loadedProject.schemaChangeCount);
+            // Set your fields
             this.schemaChangeCount = loadedProject.schemaChangeCount;
             this.version = loadedProject.version;
             this.liveSet = loadedProject.liveSet;
             this.compatibility = new Compatibility(this);
 
-        } catch (JAXBException e) {
+        } catch (JsonSyntaxException e) {
             logger.error("Error reading Ableton project file", e);
         }
     }
 
+    public String convertXmlToJson(String xml) {
+        try {
+            // Create a Jackson XML Mapper
+            XmlMapper xmlMapper = new XmlMapper();
+
+            // Deserialize the XML into a map
+            Object obj = xmlMapper.readValue(xml, Object.class);
+
+            // Convert that object to a JSON string
+            ObjectMapper jsonMapper = new ObjectMapper();
+            return jsonMapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            logger.error("Error converting XML to JSON", e);
+            return null;
+        }
+    }
 
     public int getSchemaChangeCount() {
         return schemaChangeCount;

@@ -1,5 +1,7 @@
 package com.brink.model.ableton;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,11 +13,10 @@ import java.util.List;
 public class AbletonTracks {
     private static final Logger logger = LoggerFactory.getLogger(AbletonTracks.class);
 
-    @XmlElements({
-            @XmlElement(name = "AudioTrack", type = AbletonTrack.class),
-            @XmlElement(name = "MidiTrack", type = AbletonTrack.class),
-            @XmlElement(name = "GroupTrack", type = AbletonTrack.class)
-    })
+    @Expose
+    @SerializedName("AudioTrack")
+//    @SerializedName("MidiTrack")  // Mapped to 'MidiTrack' key in JSON
+//    @SerializedName("GroupTrack") // Mapped to 'GroupTrack' key in JSON
     private List<AbletonTrack> tracks;
 
 

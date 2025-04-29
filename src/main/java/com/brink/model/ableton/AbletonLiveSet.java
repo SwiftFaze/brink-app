@@ -1,5 +1,7 @@
 package com.brink.model.ableton;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,13 +15,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class AbletonLiveSet {
     private static final Logger logger = LoggerFactory.getLogger(AbletonLiveSet.class);
 
-    @XmlElement(name = "Tracks")
+    @Expose
+    @SerializedName("Tracks")
     private AbletonTracks tracks;
 
-    @XmlElement(name = "MasterTrack")
+    @Expose
+    @SerializedName("MasterTrack")
     private AbletonMasterTrack masterTrack;
 
-    @XmlElement(name = "PreHearTrack")
+    @Expose
+    @SerializedName("PreHearTrack")
     private AbletonPreHearTrack preHearTrack;
 
 

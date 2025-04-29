@@ -1,4 +1,4 @@
-package com.brink;
+package com.brink.brink;
 
 import com.brink.model.Collaborator;
 import com.brink.model.FileData;
@@ -58,9 +58,16 @@ public class Brink extends Application {
     private final Collaborator collaborator = new Collaborator();
     private AppSettings appSettings = new AppSettings();
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+
+
+//    @Override
+//    public void start(Stage stage) throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+//        stage.setTitle("Hello!");
+//        stage.setScene(scene);
+//        stage.show();
+//    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -91,6 +98,15 @@ public class Brink extends Application {
             logger.info("======= [BRINK APPLICATION EXITED] =======");
         }));
     }
+
+
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+
+
 
     private void addUserPluginDataToProject() {
         this.setProjectInfoLoading(true);
@@ -553,3 +569,4 @@ public class Brink extends Application {
         }
     }
 }
+

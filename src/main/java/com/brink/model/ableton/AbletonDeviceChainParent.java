@@ -1,6 +1,8 @@
 package com.brink.model.ableton;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,10 +16,12 @@ public class AbletonDeviceChainParent {
     private static final Logger logger = LoggerFactory.getLogger(AbletonDeviceChainParent.class);
 
 
-    @XmlElement(name = "DeviceChain")
+    @Expose
+    @SerializedName("DeviceChain")
     private AbletonDeviceChain deviceChain = new AbletonDeviceChain();
 
-    @XmlElement(name = "MainSequencer")
+    @Expose
+    @SerializedName("MainSequencer")
     private AbletonMainSequencer MainSequencer = new AbletonMainSequencer();
 
     public AbletonDeviceChain getDeviceChain() {

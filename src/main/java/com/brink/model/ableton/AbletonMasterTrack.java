@@ -1,6 +1,8 @@
 package com.brink.model.ableton;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,31 +15,9 @@ import javax.xml.bind.annotation.XmlElement;
 public class AbletonMasterTrack {
     private static final Logger logger = LoggerFactory.getLogger(AbletonMasterTrack.class);
 
-    @XmlAttribute(name = "Id")
-    private int id;
-
-    @XmlElement(name = "LomId")
-    private AbletonIntValue lomId;
-
-    @XmlElement(name = "Name")
+    @Expose
+    @SerializedName("Name")
     private AbletonTrackName name;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getLomId() {
-        return lomId.getValue();
-    }
-
-    public void setLomId(AbletonIntValue lomId) {
-        this.lomId = lomId;
-    }
 
     public AbletonTrackName getTrackName() {
         return name;

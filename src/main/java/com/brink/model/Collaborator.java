@@ -3,11 +3,13 @@ package com.brink.model;
 import com.brink.model.app.AppSettings;
 import com.brink.model.app.Plugin;
 import com.brink.shared.FileService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -68,8 +70,6 @@ public class Collaborator {
         logger.debug("Saving collaborator file...");
 
         String filePath = FileService.createUserPluginFilePath(appSettings, fileData);
-
-        ObjectMapper objectMapper = new ObjectMapper();
         File file = new File(filePath);
 
         File parentDir = file.getParentFile();
@@ -77,13 +77,37 @@ public class Collaborator {
             parentDir.mkdirs();
         }
 
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter(file)) {
+            gson.toJson(this, writer);
             logger.info("Saved to: {}", filePath);
         } catch (IOException e) {
             logger.error("Error saving collaborator data to JSON file: {}", e.getMessage());
         }
     }
+
+
+//    public void save(AppSettings appSettings, FileData fileData) {
+//        logger.debug("Saving collaborator file...");
+//
+//        String filePath = FileService.createUserPluginFilePath(appSettings, fileData);
+//
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        File file = new File(filePath);
+//
+//        File parentDir = file.getParentFile();
+//        if (parentDir != null && !parentDir.exists()) {
+//            parentDir.mkdirs();
+//        }
+//
+//        try {
+//            objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
+//            logger.info("Saved to: {}", filePath);
+//        } catch (IOException e) {
+//            logger.error("Error saving collaborator data to JSON file: {}", e.getMessage());
+//        }
+//    }
 
     public String getUsername() {
         return username;

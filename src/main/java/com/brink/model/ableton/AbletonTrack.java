@@ -1,6 +1,8 @@
 package com.brink.model.ableton;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,19 +15,24 @@ import javax.xml.bind.annotation.XmlElement;
 public class AbletonTrack {
     private static final Logger logger = LoggerFactory.getLogger(AbletonTrack.class);
 
-    @XmlAttribute(name = "Id")
+    @Expose
+    @SerializedName("Id")
     private int id;
 
-    @XmlElement(name = "LomId")
+    @Expose
+    @SerializedName("LomId")
     private AbletonIntValue lomId;
 
-    @XmlElement(name = "Name")
+    @Expose
+    @SerializedName("Name")
     private AbletonTrackName name;
 
-    @XmlElement(name = "Freeze")
+    @Expose
+    @SerializedName("Freeze")
     private boolean isFrozen;
 
-    @XmlElement(name = "DeviceChain")
+    @Expose
+    @SerializedName("DeviceChain")
     private AbletonDeviceChainParent deviceChain;
 
     public int getId() {

@@ -1,6 +1,8 @@
 package com.brink.model.ableton;
 
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,16 +14,20 @@ import javax.xml.bind.annotation.XmlElement;
 public class AbletonTrackName {
     private static final Logger logger = LoggerFactory.getLogger(AbletonTrackName.class);
 
-    @XmlElement(name = "EffectiveName")
+    @Expose
+    @SerializedName("EffectiveName")
     private AbletonStringValue effectiveName;
 
-    @XmlElement(name = "UserName")
+    @Expose
+    @SerializedName("UserName")
     private AbletonStringValue userName;
 
-    @XmlElement(name = "Annotation")
+    @Expose
+    @SerializedName("Annotation")
     private AbletonStringValue annotation;
 
-    @XmlElement(name = "MemorizedFirstClipName")
+    @Expose
+    @SerializedName("MemorizedFirstClipName")
     private AbletonStringValue memorizedFirstClipName;
 
     public String getEffectiveName() {
