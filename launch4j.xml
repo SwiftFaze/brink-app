@@ -1,9 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <launch4jConfig>
-    <jar>brink-1.0-SNAPSHOT.jar</jar>
-    <outfile>BrinkApp.exe</outfile>
-    <mainClass>your.package.MainApp</mainClass>
-    <jre>
-        <path>path\to\jre</path> <!-- Optional, if you bundle a JRE -->
-    </jre>
-    <cmdLine>--module-path "javafx-sdk-24/lib" --add-modules javafx.controls,javafx.fxml</cmdLine>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>console</headerType>
+  <jar>C:\Users\Rob\IdeaProjects\brink-app\target\brink-1.0-SNAPSHOT.jar</jar>
+  <outfile>C:\Users\Rob\IdeaProjects\brink-app\target\test.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon></icon>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion></minVersion>
+    <maxVersion></maxVersion>
+  </jre>
 </launch4jConfig>

@@ -7,8 +7,7 @@ public enum PluginFormat {
     VST3(".vst3", "VST3"),
     AU(".component", "AudioUnit"),
     AAX(".aaxplugin", "AAX"),
-    NATIVE_ABLETON("", "Native Ableton plugin"),
-    DEFAULT("", "");
+    NATIVE_ABLETON("", "Native Ableton plugin");
 
     private final String extension;
     private final String name;

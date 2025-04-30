@@ -1,16 +1,14 @@
 package com.brink.model.ableton;
 
 import com.brink.model.PluginFormat;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAnyElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAnyElement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +16,8 @@ import java.util.List;
 public class AbletonDevices {
     private static final Logger logger = LoggerFactory.getLogger(AbletonDevices.class);
 
-    @Expose
-    @SerializedName("*")
-    private List<Element> deviceElements;
+    @XmlAnyElement
+    private List<Element> deviceElements;  // DOM elements of unknown tag names
 
     public List<AbletonDevice> getDevices() {
         if (deviceElements == null) return new ArrayList<>();

@@ -1,14 +1,12 @@
 package com.brink.model.ableton;
 
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -16,12 +14,10 @@ public class AbletonDeviceChainParent {
     private static final Logger logger = LoggerFactory.getLogger(AbletonDeviceChainParent.class);
 
 
-    @Expose
-    @SerializedName("DeviceChain")
+    @XmlElement(name = "DeviceChain")
     private AbletonDeviceChain deviceChain = new AbletonDeviceChain();
 
-    @Expose
-    @SerializedName("MainSequencer")
+    @XmlElement(name = "MainSequencer")
     private AbletonMainSequencer MainSequencer = new AbletonMainSequencer();
 
     public AbletonDeviceChain getDeviceChain() {

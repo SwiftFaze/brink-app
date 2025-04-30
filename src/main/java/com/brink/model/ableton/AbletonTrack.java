@@ -1,38 +1,31 @@
 package com.brink.model.ableton;
 
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlElement;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class AbletonTrack {
     private static final Logger logger = LoggerFactory.getLogger(AbletonTrack.class);
 
-    @Expose
-    @SerializedName("Id")
+    @XmlAttribute(name = "Id")
     private int id;
 
-    @Expose
-    @SerializedName("LomId")
+    @XmlElement(name = "LomId")
     private AbletonIntValue lomId;
 
-    @Expose
-    @SerializedName("Name")
+    @XmlElement(name = "Name")
     private AbletonTrackName name;
 
-    @Expose
-    @SerializedName("Freeze")
+    @XmlElement(name = "Freeze")
     private boolean isFrozen;
 
-    @Expose
-    @SerializedName("DeviceChain")
+    @XmlElement(name = "DeviceChain")
     private AbletonDeviceChainParent deviceChain;
 
     public int getId() {

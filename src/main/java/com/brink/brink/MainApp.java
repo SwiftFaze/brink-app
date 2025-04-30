@@ -38,8 +38,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Brink extends Application {
-    private static final Logger logger = LoggerFactory.getLogger(Brink.class);
+public class MainApp extends Application {
+    private static final Logger logger = LoggerFactory.getLogger(MainApp.class);
 
     private final double windowHeight = 1500;
 
