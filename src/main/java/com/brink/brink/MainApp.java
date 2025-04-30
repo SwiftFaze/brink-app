@@ -13,6 +13,7 @@ import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -59,19 +60,12 @@ public class MainApp extends Application {
     private AppSettings appSettings = new AppSettings();
 
 
-
-//    @Override
-//    public void start(Stage stage) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-//        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-//        stage.setTitle("Hello!");
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-
     @Override
     public void start(Stage primaryStage) {
         logger.info("======= [BRINK APPLICATION STARTED] =======");
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("hello-view.fxml"));
+        fxmlLoader.setClassLoader(MainApp.class.getClassLoader());
+
         primaryStage.setTitle("Brink");
 
         setAppHeaderMenuView();
